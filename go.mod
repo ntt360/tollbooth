@@ -1,6 +1,6 @@
-module github.com/didip/tollbooth/v6
+module github.com/ntt360/tollbooth/v6
 
-go 1.12
+go 1.13
 
 require (
 	github.com/go-pkgz/expirable-cache v0.0.3
