@@ -72,6 +72,9 @@ type Limiter struct {
 	// Empty means limit all methods.
 	methods []string
 
+	// cookie keys
+	cookies []string
+
 	// Able to configure token bucket expirations.
 	generalExpirableOptions *ExpirableOptions
 
@@ -362,6 +365,18 @@ func (l *Limiter) GetHeaders() map[string][]string {
 	}
 
 	return results
+}
+
+func (l *Limiter) SetCookie(keys []string)  {
+	l.RLock()
+	l.cookies = keys
+	l.RUnlock()
+}
+
+func (l *Limiter) GetCookie() []string {
+	l.RLock()
+	defer l.RUnlock()
+	return l.cookies
 }
 
 // SetHeader is thread-safe way of setting entries of 1 HTTP header.
